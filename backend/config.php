@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 // Your existing port 3307 connection code below...
-$host = 'sql304.infinityfree.com';
-$dbname = 'if0_42911476_ticket_db';
-$username = 'if0_42911476';
-$password = 'QLdOO6LWew';
+$host = 'ticket-db-cloud-sathisathish1530-2866.l.aivencloud.com';
+$dbname = 'defaultdb';
+$username = 'avnadmin';
+$password = 'AVNS_7tlQymlyus6CH4gnzQW';
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
