@@ -13,7 +13,7 @@ function Register({ toggleView }) {
     setMessage('');
 
     try {
-      const res = await fetch('http://localhost/dashboard/ticket-system/backend-api/register.php', {
+      const res = await fetch('http://freepage.cc', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password })

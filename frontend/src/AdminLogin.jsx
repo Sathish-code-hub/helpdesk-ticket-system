@@ -11,7 +11,7 @@ function AdminLogin({ onLoginSuccess, changeView }) {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('http://localhost/dashboard/ticket-system/backend-api/login.php', {
+      const res = await fetch('http://freepage.cc', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, role: 'developer' })

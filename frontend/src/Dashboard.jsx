@@ -19,7 +19,7 @@ function Dashboard({ user, onLogout }) {
   const fetchTickets = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost/dashboard/ticket-system/backend-api/tickets.php?user_id=${user.id}&role=${user.role}`);
+      const res = await fetch(`http://freepage.cc{user.id}&role=${user.role}`);
       const data = await res.json();
       if (Array.isArray(data)) setTickets(data);
     } catch (err) {
@@ -38,7 +38,7 @@ function Dashboard({ user, onLogout }) {
     const loadId = toast.loading("Logging ticket into master queue...");
 
     try {
-      const res = await fetch('http://localhost/dashboard/ticket-system/backend-api/tickets.php', {
+      const res = await fetch('http://freepage.cc', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: user.id, title, description })
@@ -63,7 +63,7 @@ function Dashboard({ user, onLogout }) {
     const loadId = toast.loading("Saving status configuration updates...");
 
     try {
-      const res = await fetch('http://localhost/dashboard/ticket-system/backend-api/tickets.php', {
+      const res = await fetch('http://freepage.cc', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ticket_id: selectedTicket.id, status: devStatus, developer_notes: devNotes })
