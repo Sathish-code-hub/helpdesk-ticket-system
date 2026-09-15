@@ -63,7 +63,7 @@ function Dashboard({ user, onLogout }) {
     const loadId = toast.loading("Saving status configuration updates...");
 
     try {
-      const res = await fetch('https://helpdesk-ticket-system-cwwo.onrender.com', {
+      const res = await fetch('https://helpdesk-ticket-system-cwwo.onrender.com/tickets.php', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ticket_id: selectedTicket.id, status: devStatus, developer_notes: devNotes })
