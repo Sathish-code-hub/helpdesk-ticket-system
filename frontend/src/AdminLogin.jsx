@@ -11,7 +11,7 @@ function AdminLogin({ onLoginSuccess, changeView }) {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('https://onrender.com', {
+      const res = await fetch('https://helpdesk-ticket-system-cwwo.onrender.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, role: 'developer' })
