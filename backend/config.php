@@ -1,6 +1,6 @@
 <?php
 // Explicitly list PUT and OPTIONS alongside GET and POST to clear browser CORS rules
-header("Access-Control-Allow-Origin:*");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
@@ -15,11 +15,19 @@ $host = 'ticket-db-cloud-sathisathish1530-2866.l.aivencloud.com';
 $dbname = 'defaultdb';
 $username = 'avnadmin';
 $password = 'AVNS_7tlQymlyus6CH4gnzQW';
+
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    // UNIVERSAL SSL BYPASS: We tell PDO to connect without strictly verifying the server certificate
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password, [
+        PDO::MYSQL_ATTR_SSL_COMMAND_INITIAL_CA => true,
+        PDO::SELECT_KEY => false, // Prevents specific driver drops
+        PDO::ATTR_PERSISTENT => false
+    ]);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
+    // Returns the exact database error to the browser screen so we can see it clearly
+    http_response_code(500);
     echo json_encode(["error" => "Database connection failed: " . $e->getMessage()]);
     exit;
 }
