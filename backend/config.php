@@ -18,13 +18,15 @@ $password = 'AVNS_7tlQymlyus6CH4gnzQW';
 
 try {
     // UNIVERSAL SSL BYPASS: We tell PDO to connect without strictly verifying the server certificate
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password, [
-        PDO::MYSQL_ATTR_SSL_COMMAND_INITIAL_CA => true,
-        PDO::SELECT_KEY => false, // Prevents specific driver drops
-        PDO::ATTR_PERSISTENT => false
-    ]);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $pdo = new PDO(
+    "mysql:host=$host;dbname=$dbname;charset=utf8",
+    $username,
+    $password,
+    [
+        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]
+);
 } catch (PDOException $e) {
     // Returns the exact database error to the browser screen so we can see it clearly
     http_response_code(500);
