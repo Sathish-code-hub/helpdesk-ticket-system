@@ -11,7 +11,7 @@ function ClientLogin({ onLoginSuccess, changeView }) {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('http://freepage.cc', {
+      const res = await fetch('https://onrender.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, role: 'client' })
