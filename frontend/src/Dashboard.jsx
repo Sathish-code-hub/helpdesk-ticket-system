@@ -19,7 +19,7 @@ function Dashboard({ user, onLogout }) {
   const fetchTickets = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://freepage.cc{user.id}&role=${user.role}`);
+      const res = await fetch(`https://helpdesk-ticket-system-cwwo.onrender.com{user.id}&role=${user.role}`);
       const data = await res.json();
       if (Array.isArray(data)) setTickets(data);
     } catch (err) {
@@ -38,7 +38,7 @@ function Dashboard({ user, onLogout }) {
     const loadId = toast.loading("Logging ticket into master queue...");
 
     try {
-      const res = await fetch('http://freepage.cc', {
+      const res = await fetch('https://helpdesk-ticket-system-cwwo.onrender.com/tickets.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: user.id, title, description })
